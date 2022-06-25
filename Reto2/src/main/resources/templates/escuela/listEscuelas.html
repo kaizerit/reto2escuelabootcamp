@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="favicon.ico">
+
+	<title>Listado de escuelas</title>
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+	<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+
+	<main role="main">
+		<hr>
+		<div class="">
+
+			<div class="card">
+				<h4 class="card-header">
+					<strong>Listado de Escuelas</strong>
+				</h4>
+				<div class="card-body">
+					<a class="btn btn-primary" th:href="@{/escuelas/create}" title="Crear nueva escuela"
+						role="button"><i class="fas fa-file" aria-hidden="true"></i> Registrar</a>
+					<hr>
+					<!--  <form th:action="@{/escuelaes/find}" method="post"
+						th:object="${escuela}">
+						<div class="form-group">
+							<table>
+								<tbody>
+									<tr>
+										<td><label for="nombre" class="col-sm-2 col-form-label">Buscar:</label></td>
+										<td><input type="text" class="form-control"
+											th:field="*{nombre}" id="nombre" placeholder="escuela"
+											 autocomplete="off"></input></td>
+										<td><button type="submit" class="btn btn-danger">
+												<i class="iconf fa fa-search" style="color: white;"></i>
+											</button></td>
+										<td><a th:href="@{/escuelaes/list}" class="btn btn-danger">Limpiar</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</form>-->
+					<table class="table table-hover">
+						<thead class="thead-light">
+							<tr>
+								<th scope="col">Id Escuela</th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Cant Alumnos</th>
+								<th scope="col">Recurso Fiscal</th>
+								<th scope="col">Licenciada</th>
+								<th scope="col">Clasificacion</th>
+								<th scope="col">Fecha Registro</th>
+								<th scope="col">Desc Facultad</th>
+								<th scope="col">Opcion</th>
+								<th scope="col">Opcion</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="escuela : ${escuelas}">
+								<td th:text="${escuela.idEscuela}"></td>
+								<td th:text="${escuela.nombre}"></td>
+								<td th:text="${escuela.cantAlumnos}"></td>
+								<td th:text="${escuela.recursoFiscal}"></td>
+								<td th:text="${escuela.licenciada}"></td>
+								<td th:text="${escuela.clasificacion}"></td>
+								<td th:text="${escuela.fechaRegistro}"></td>
+								<td th:text="${escuela.facultad.descFacultad}"></td>
+								<td><a th:href="@{/escuelas/edit/{id} (id=${escuela.idEscuela}) }" role="button"
+										class="btn btn-success">Modificar</a></td>
+								<td><a th:href="@{/escuelas/delete/{id} (id=${escuela.idEscuela}) }"
+										onclick="return confirm ('Estas seguro?')" role="button"
+										class="btn btn-secondary">Eliminar</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<div>
+						<a th:href="@{/escuelas/pdf}" target="_blank"
+							class="btn btn-danger" role="button" title="Exportar">
+							Generar Reporte
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /container -->
+
+	</main>
+
+	<footer>
+
+		<hr>
+		<a class="btn btn-primary" th:href="@{/escuelas/index}" title="Regresar al menu" role="button"><i class=""
+				aria-hidden="true"></i> Regresar Menu Principal</a>
+	</footer>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>
